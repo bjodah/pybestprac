@@ -1,0 +1,34 @@
+language: python
+python:
+  - '2.7'
+  - '3.4'
+before_install:
+  - ./scripts/install_miniconda.sh $TRAVIS_PYTHON_VERSION $HOME/miniconda
+  - ./scripts/conda_create_test-env.sh $TRAVIS_PYTHON_VERSION $HOME/miniconda testenv
+  - mv $HOME/miniconda/envs/testenv/bin/../lib/libm.so* /tmp/  # work around
+  - ./scripts/test_env/ubuntu12.04/apt_get_gcc_48.sh
+  - ./scripts/test_env/ubuntu12.04/apt_get_g++_48.sh
+  - ./scripts/test_env/ubuntu12.04/apt_get_gfortran_48.sh
+  - export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
+install: >
+  - source $HOME/miniconda/bin/activate testenv
+  if [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then
+    # Python 2.7 tests distutils/setup.py based install
+    DISTUTILS_DEBUG=1 python setup.py build_ext -i
+  else
+    # Python 3.4 tests conda based install
+    # http://conda.pydata.org/docs/travis.html
+    conda build conda-recipe
+    conda install pybestprac --use-local
+  fi
+script: 
+  - ./scripts/run_tests.sh
+after_success:
+  - coveralls
+  - ./scripts/travis_after_success.sh $HOME/miniconda testenv
+notifications:
+  email: false
+env:
+  global:
+   - secure: "VenwDZD7KH+YG/QSrkVyiQ7vZjCGHM29V43VXLJqaEx93Bg8M8wKGhKXtiTVqvlzGbR+vUkLHlyk8WXP63Dp3qqpzdwBkEI3Crfq7hU9j/S4d7xjTSu3icXmMBFOjidE9SIp/5y0i5XmyA/N7m/hcOWZf33TDNL/Rx2BMZRa8TQ="
+   - secure: "JnLHNyHwgjzIKdZ4MdJm98IjAoUjN6eZ3SyGw629ad7BMM8P1n/tPlwDd6WuVQHvVpkVsnoEhg45CsC4vIg+wXVpfjfqSC9kQtPnvdDMEsDwxCG4soKrH5HJVjp6XsY6RbtutqQgDsp7+bYl6edL+r7GzDx39cb+pk2fE0H/OBo="

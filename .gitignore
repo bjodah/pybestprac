@@ -1,0 +1,28 @@
+# Lockfiles and auto-save files
+\#*\#
+*/\#*\#
+.\#*
+*/.\#*
+*~
+*/*~
+
+# Files from compilation
+build/
+dist/
+MANIFEST
+*.pyc
+*/*.pyc
+*/*/*.pyc
+*/*.o
+*/*.mod
+*/*.so
+
+# Generated files from docs
+docs/_build
+docs/_build.log
+
+# Various
+.cache/
+.coverage*
+examples/tests/.coverage*
+htmlcov/
