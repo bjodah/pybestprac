@@ -1,0 +1,18 @@
+image: bjodah/trusty-drone-miniconda34  # contains git, wget, gcc, g++, gfortran, cmake, valgrind, miniconda
+git:
+    path: github.com/bjodah/pybestprac
+env:
+  - BINSTAR_USER=bjodah
+  - PYTHON_VERSION=3.4
+  - CONDA_PY=34
+script:
+  - export PATH=$MINICONDA_PATH/bin:$PATH
+  - conda config --add channels http://conda.binstar.org/$BINSTAR_USER
+  - export ENV_NAME=pybestprac_testenv
+  - source ./scripts/setup_conda_testenv.sh $PYTHON_VERSION $ENV_NAME
+  - python --version
+  - python -c "import setup; print(setup.__version__)"
+  - export DISTUTILS_DEBUG=1
+  - conda build conda-recipe
+  - conda install --quiet pybestprac --use-local
+  - TEST_INSTALL=1 bash -x -e ./scripts/run_tests.sh

@@ -11,4 +11,4 @@ binaries.
 __version__ = '0.0.1'
 __url__ = "https://github.com/bjodah/pybestprac"
 
-from norms import euclidean_norm
+from .norms import euclidean_norm

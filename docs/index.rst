@@ -11,7 +11,11 @@ Contents:
 .. toctree::
    :maxdepth: 4
 
+   overview
+   install
    pybestprac
+   devel
+   
 
 
 Indices and tables

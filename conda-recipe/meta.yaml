@@ -1,0 +1,33 @@
+package:
+  name: pybestprac
+  #  version: "0.0.1" 
+  # the version is actually being set by the __conda_version__.txt file
+  # http://conda.pydata.org/docs/build.html#post-build-version
+
+source:
+  path: ../
+
+requirements:
+  build:
+    - python
+    - cython
+    - patchelf
+    - pycompilation
+    - pycodeexport
+  run:
+    - python
+
+test:
+  requires:
+    - pytest
+  imports:
+    - pybestprac
+
+about:
+  home: https://github.com/bjodah/pybestprac
+  license:  BSD License
+  summary: 'Demo package for "best practices" python extension module github repo'
+
+# See
+# http://docs.continuum.io/conda/build.html for
+# more information about meta.yaml
