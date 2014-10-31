@@ -4,18 +4,19 @@ here you will find all norms implemented.
 Example:
 
 >>> from pybestprac.norms import taxicab_norm
->>> taxicab_norm([(1,1),(2,2)])
-[2.0, 4.0]
+>>> taxicab_norm([(1, 1), (2, 2)])
+[2, 4]
 
 """
 
 from operator import add
+from functools import reduce
 
 from ._euclid import euclidean_norm as _euclidean_norm
 
 
 def euclidean_norm(vectors, allow_empty=False):
-    """
+    r"""
     Calculates the euclidean norms of vectors of integers through the formula:
 
     .. math::

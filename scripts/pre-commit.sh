@@ -1,12 +1,23 @@
 #!/bin/bash
+
+function setup_on_failing_import {
+    if ! python -c "import pybestprac"; then
+        set -e
+        python setup.py build_ext --inplace
+        set +e
+    fi
+}
+
 if git diff-index --quiet HEAD --; then
     # no changes between index and working copy; just run tests
+    setup_on_failing_import
     py.test --pep8
     RESULT=$?
 else
     # Test the version that's about to be committed,
     # stashing all unindexed changes
     git stash -q --keep-index
+    setup_on_failing_import
     py.test --pep8
     RESULT=$?
     git stash pop -q

@@ -6,3 +6,5 @@ pytest-cov>=1.8.0
 sphinx>=1.2.3
 numpydoc>=0.5
 sphinx_rtd_theme>=0.1.6
+pycompilation>=0.3.7
+pycodeexport>=0.0.5

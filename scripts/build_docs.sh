@@ -11,5 +11,5 @@ export PYTHONPATH=$absolute_repo_path:$absolute_repo_path/examples:$PYTHONPATH
 #sphinx-apidoc --output-dir docs/ --full --doc-author="Bjoern Dahlgren" --doc-version "v0.0.1" pybestprac
 
 cd docs/
-make html >_build.log
+make $@ html >_build.log
 cp _build.log _build/html/

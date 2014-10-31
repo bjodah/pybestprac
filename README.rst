@@ -5,9 +5,6 @@ pybestprac
 .. image:: https://travis-ci.org/bjodah/pybestprac.png?branch=master
    :target: https://travis-ci.org/bjodah/pybestprac
    :alt: Build status
-.. image:: https://readthedocs.org/projects/pybestprac/badge/?version=latest
-   :target: http://pybestprac.readthedocs.org/
-   :alt: Documentation Status
 .. image:: https://coveralls.io/repos/bjodah/pybestprac/badge.png?branch=master
    :target: https://coveralls.io/r/bjodah/pybestprac?branch=master
    :alt: Test coverage
@@ -17,6 +14,15 @@ an open source python package using github and external serives.
 
 It is made quite intricate (Fortran 90 implementation called from C++
 which in turn is wrapped using Cython to allow use from Python). 
+
+To use this repo as a skeleton you may want to ``grep`` for:
+
+* bjodah
+* pybestprac
+* norms
+* Dahlgren
+
+and make appropriate substitutions.
 
 Documentation
 =============
@@ -29,9 +35,18 @@ Installation
 ============
 .. install-start
 
-Below you will find instructions for installation. You may also
-look in ``scripts/`` folder for automated install scripts used
-in continuous integration.
+The easiest way to install pybestprac is by using conda:
+
+::
+
+    $ conda config --add channels http://conda.binstar.org/bjodah
+    $ conda install pybestprac
+
+
+If you cannot use anaconda you may build the package yourself from 
+the source code. The instructions for doing so is found below, 
+you may also look in ``scripts/`` folder for automated install
+scripts used in continuous integration.
 
 Prerequisites
 -------------
@@ -39,6 +54,15 @@ Prerequisites
 - C++ compiler with C++11 support (e.g. GCC >= 4.8)
 - Fortran compiler with ISO_C_BINDING support (Fortran 2003 standard) (e.g. gfortran)
 - Python (2.7 or >=3.4)
+
+Under anaconda you may simply:
+
+::
+
+    $ source ./scripts/setup_conda_testenv.sh 3.4 testenv
+    $ conda build conda-recipe
+
+without 
     
 In addition to python, the following python packages are required
 (versions indicate what is tested):

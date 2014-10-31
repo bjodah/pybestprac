@@ -1,12 +1,14 @@
 pybestprac package
 ==================
 
-Subpackages
------------
+Module contents
+---------------
 
-.. toctree::
+.. automodule:: pybestprac
+    :members:
+    :undoc-members:
+    :show-inheritance:
 
-    pybestprac.util
 
 Submodules
 ----------
@@ -20,10 +22,10 @@ pybestprac.norms module
     :show-inheritance:
 
 
-Module contents
----------------
+Subpackages
+-----------
 
-.. automodule:: pybestprac
-    :members:
-    :undoc-members:
-    :show-inheritance:
+.. toctree::
+
+    pybestprac.util
+
