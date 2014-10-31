@@ -1,6 +1,18 @@
 #!/bin/bash -x
 
 if [ "$TRAVIS_REPO_SLUG" == "${GITHUB_USER}/${GITHUB_REPO}" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" == "master" ] && [ "$BUILD_DOCS" == "1" ]; then
+    # Publish binary if version does not end with .dev
+    export DISTUTILS_DEBUG=  # less verbose setup.py --version
+    export VERSION=$(python setup.py --version)
+    if [[ "${VERSION}" != *.dev ]]; then
+        conda install binstar
+        export MY_CONDA_PKG=$(conda build --output conda-recipe | tail -n 1)
+        set +x # Silent (protect token in Travis log)
+        binstar -t $BINSTAR_TOKEN upload --force ${MY_CONDA_PKG/--/-$VERSION-}
+        set -x
+    fi
+
+
     # Build the documentation
     # =======================
 

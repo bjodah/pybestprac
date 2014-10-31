@@ -1,8 +1,7 @@
-#!/bin/bash -x -e
+#!/bin/bash 
 
 PY_VERSION=$1
 ENV_NAME=$2
-
-conda create --quiet -n $ENV_NAME python=${PY_VERSION} cython=0.21 pip sphinx pytest numpydoc future
+conda create --quiet -n $ENV_NAME python=${PY_VERSION} cython=0.21 pip sphinx pytest numpydoc future pycompilation pycodeexport
 source activate $ENV_NAME
-pip install --quiet pycompilation pycodeexport argh pytest-pep8 pytest-cov python-coveralls sphinx_rtd_theme https://github.com/sympy/sympy/archive/master.zip
+pip install --quiet argh pytest-pep8 pytest-cov python-coveralls sphinx_rtd_theme https://github.com/sympy/sympy/archive/master.zip

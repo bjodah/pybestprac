@@ -33,9 +33,6 @@ script:
   - ./scripts/run_tests.sh
 after_success:
   - coveralls
-  - python scripts/move-conda-package.py conda-recipe
-  - conda install binstar
-  - binstar -t $BINSTAR_TOKEN upload --force *.tar.bz2
   - ./scripts/travis_after_success.sh
 notifications:
   email: false

@@ -24,8 +24,7 @@ if not IS_RELEASE:
     __version__ += '.dev'  # PEP386
 
 if CONDA_BUILD:
-    open('__conda_version__.txt', 'w').write(
-        __version__ + ('' if IS_RELEASE else '.dev'))
+    open('__conda_version__.txt', 'w').write(__version__)
 
 if ON_DRONE or ON_TRAVIS:
     # 'fast' implies march=native which fails on current version of docker.
