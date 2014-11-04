@@ -1,7 +1,7 @@
 #!/bin/bash
 # Usage, e.g.:
 # ./scripts/run_tests.sh --ignore examples/
-if python -c "import pybestprac"; then
+if ! python -c "import pybestprac" > /dev/null; then
     python setup.py build_ext --inplace
 fi
 if [[ $TEST_INSTALL != "1" ]]; then
@@ -11,4 +11,4 @@ if [[ $TEST_INSTALL != "1" ]]; then
     absolute_repo_path="${absolute_repo_path_x%x}"
     export PYTHONPATH=$absolute_repo_path:$PYTHONPATH
 fi
-py.test --slow --veryslow --pep8 --doctest-modules --cov pybestprac --cov-report html --ignore setup.py --ignore scripts/move-conda-package.py $@
+py.test --slow --veryslow --pep8 --doctest-modules --cov pybestprac --cov-report html --ignore setup.py --ignore scripts/move-conda-package.py --ignore build/ $@
