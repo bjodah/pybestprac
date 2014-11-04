@@ -1,10 +1,10 @@
-image: bjodah/trusty-drone-miniconda34  # contains git, wget, gcc, g++, gfortran, cmake, valgrind, miniconda
+image: bjodah/trusty-drone-miniconda27  # contains git, wget, gcc, g++, gfortran, cmake, valgrind, miniconda
 git:
     path: github.com/bjodah/pybestprac
 env:
   - BINSTAR_USER=bjodah
-  - PYTHON_VERSION=3.4
-  - CONDA_PY=34
+  - PYTHON_VERSION=2.7
+  - CONDA_PY=27
   - ENV_NAME=pybestprac_testenv
 script:
   - export PATH=$MINICONDA_PATH/bin:$PATH
