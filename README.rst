@@ -71,8 +71,7 @@ In addition to python, the following python packages are required
 - numpy>=1.9.0
 - cython>=0.21.0
 - future>=0.14.1
-- pycompilation>=0.3.6
-- pycodeexport>=0.0.5
+- pycompilation>=0.4.0.dev
 
 For rendering the documentation you also need:
 

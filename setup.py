@@ -52,11 +52,11 @@ else:
     ]
 
     # The rest of this `else` clause relies on pycodeexport/pycompilation
-    from pycodeexport.dist import pce_build_ext, PCEExtension
-    cmdclass['build_ext'] = pce_build_ext
+    from pycompilation.dist import pc_build_ext, PCExtension
+    cmdclass['build_ext'] = pc_build_ext
 
     ext_modules = [
-        PCEExtension(
+        PCExtension(
             "pybestprac._euclid",
             sources=sources,
             pycompilation_compile_kwargs={
