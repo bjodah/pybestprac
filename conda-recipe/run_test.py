@@ -1,11 +1,15 @@
+import os
 import sys
 import traceback
+from subprocess import Popen
 
-print("Importing pybestprac...")
+pkg_name = 'pybestprac'
+
+print("Importing %s..." % pkg_name)
 try:
     import pybestprac
 except ImportError as e:
-    print("Importing pybestprac failed")
+    print("Importing %s failed" % pkg_name)
     print(e)
     traceback.print_exc(file=sys.stdout)
     raise e
@@ -23,3 +27,7 @@ except Exception as e:
     print("Other error:")
     traceback.print_exc(file=sys.stdout)
     raise e
+
+# Run the full test suite
+p = Popen(['py.test', '--pyargs', pkg_name]) # need conftest.py for: '--slow', '--veryslow'
+assert p.wait() == os.EX_OK

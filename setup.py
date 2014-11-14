@@ -3,7 +3,7 @@
 
 # This setup.py is to compile and link a
 # Fortran 90/C++11/Cython extension module.
-# To do this it uses "pycodeexport"
+# To do this it uses "pycompilation"
 
 import os
 import sys
@@ -12,16 +12,23 @@ from distutils.core import setup, Command
 
 
 pkg_name = 'pybestprac'
-__version__ = '0.0.1'
 
-IS_RELEASE = os.environ.get("IS_RELEASE", '0') == '1'
+# read __version__ and __doc__ attributes:
+exec(open('pybestprac/release.py').read())
+try:
+    major, minor, micro = map(int, __version__.split('.'))
+except ValueError:
+    IS_RELEASE=False
+else:
+    IS_RELEASE=True
+
+with open('pybestprac/__init__.py') as f:
+    long_description = f.read().split('"""')[1]
+
 CONDA_BUILD = os.environ.get('CONDA_BUILD', '0') == '1'
 ON_RTD = os.environ.get('READTHEDOCS', None) == 'True'
 ON_DRONE = os.environ.get('DRONE', 'false') == 'true'
 ON_TRAVIS = os.environ.get('TRAVIS', 'flse') == 'true'
-
-if not IS_RELEASE:
-    __version__ += '.dev'  # PEP386
 
 if CONDA_BUILD:
     open('__conda_version__.txt', 'w').write(__version__)
@@ -63,11 +70,10 @@ else:
                 'per_file_kwargs': {
                     'src/euclid.cpp': {
                         'std': 'c++11',
-                        # 'fast' doesn't work on drone.io
-                        'options': options + ['openmp'],
+                        'options': options,
                     },
                 },
-                'options': options,
+                'options': options + ['openmp'],
             },
             pycompilation_link_kwargs={
                 'options': ['openmp'],
@@ -82,6 +88,12 @@ modules = [
     'pybestprac.util'
 ]
 
+tests = [
+    'pybestprac.tests',
+    'pybestprac.util.tests',
+]
+
+
 classifiers = [
     "Development Status :: 3 - Alpha",
     'License :: OSI Approved :: BSD License',
@@ -95,12 +107,6 @@ classifiers = [
     'Programming Language :: Python :: 3.4',
 ]
 
-long_description = '''pybestprac is a humble attempt of creating
-a demo package of some best practices for Python packages with
-native extension modules. It shows how one can use unit tests,
-continuous integration and a "conda recipe" in a way that enables
-cooperative development on github.'''
-
 setup_kwargs = {
     'name': pkg_name,
     'version': __version__,
@@ -112,7 +118,7 @@ setup_kwargs = {
     'license': 'BSD',
     'keywords': ("demo",),
     'url': 'https://github.com/bjodah/' + pkg_name,
-    'packages': [pkg_name] + modules,
+    'packages': [pkg_name] + modules + tests,
     'cmdclass': cmdclass,
     'ext_modules': ext_modules,
     'classifiers': classifiers,

@@ -18,8 +18,12 @@ requirements:
 test:
   requires:
     - pytest
+    - future
+    - argh
   imports:
     - pybestprac
+    - future
+    - argh
 
 about:
   home: https://github.com/bjodah/pybestprac

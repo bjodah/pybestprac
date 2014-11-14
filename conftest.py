@@ -8,7 +8,8 @@
 # >>> from .util.testing import veryslow
 #
 # By using these markers the tests run by e.g. the pre-commit hook
-# can e.g. be chosen to be only the fastest.
+# can e.g. be chosen to be only the quick tests and leave the heavy
+# liften to the CI servers.
 
 
 from __future__ import (
@@ -16,6 +17,8 @@ from __future__ import (
 )
 
 import pytest
+
+collect_ignore = ['setup.py', 'docs/conf.py', 'conda-recipe/run_test.py']
 
 
 def pytest_addoption(parser):

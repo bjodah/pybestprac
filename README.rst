@@ -31,6 +31,9 @@ the documentation is hostad at
 
 - http://bjodah.github.io/pybestprac/docs/
 
+and is built from the master branch by Travis-ci (`see scripts/travis_after_success.sh
+<https://github.com/bjodah/pybestprac/blob/master/scripts/travis_after_success.sh>`_)
+
 Installation
 ============
 .. install-start
@@ -48,22 +51,13 @@ the source code. The instructions for doing so is found below,
 you may also look in ``scripts/`` folder for automated install
 scripts used in continuous integration.
 
-Prerequisites
--------------
+Build prerequisites
+-------------------
 
 - C++ compiler with C++11 support (e.g. GCC >= 4.8)
 - Fortran compiler with ISO_C_BINDING support (Fortran 2003 standard) (e.g. gfortran)
 - Python (2.7 or >=3.4)
 
-Under anaconda you may simply:
-
-::
-
-    $ source ./scripts/setup_conda_testenv.sh 3.4 testenv
-    $ conda build conda-recipe
-
-without 
-    
 In addition to python, the following python packages are required
 (versions indicate what is tested):
 
@@ -81,7 +75,16 @@ For rendering the documentation you also need:
 
 Building and installing
 -----------------------
-Once non-python prerequisites are in installed, you may procede e.g. as:
+Under anaconda you may simply:
+
+::
+
+    $ source ./scripts/setup_conda_testenv.sh 3.4 testenv
+    $ mkdir build; cd build/
+    $ conda build ../conda-recipe
+
+If you're not using conda you need to first install the non-python prerequisites, 
+and then procede e.g. as:
 
 ::
 
@@ -89,7 +92,7 @@ Once non-python prerequisites are in installed, you may procede e.g. as:
     $ cd pybestprac
     $ pip install --user --upgrade -r requirements.txt
     $ python setup.py install --user
-    $ py.test
+    $ ./scripts/run_tests.sh
 
 
 the above procedure works on Ubuntu 14.04 for example. See the `Python
@@ -99,11 +102,11 @@ for more information on how to install e.g. system wide.
 
 Tests
 -----
-Run ``py.test``, possibly with explicit ``PYTHONPATH`` (e.g. if ``build_ext --inplace`` was used)
+Run ``py.test --slow --veryslow``, possibly with explicit ``PYTHONPATH`` (e.g. if ``build_ext --inplace`` was used) - or use provided run_tests.sh script:
 
 ::
 
-    $ PYTHONPATH=`pwd`:$PYTHONPATH py.test
+    $ ./scripts/run_tests.sh
 
 All tests should pass (or xfail). If they don't, please `file an issue
 <https://github.com/bjodah/pybestprac/issues>`_. 
