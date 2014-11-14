@@ -1,0 +1,270 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Overview &mdash; pybestprac 0.0.2.dev documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="pybestprac 0.0.2.dev documentation" href="index.html"/>
+        <link rel="next" title="Installation" href="install.html"/>
+        <link rel="prev" title="Welcome to pybestprac’s documentation!" href="index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="index.html" class="fa fa-home"> pybestprac</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#version-control">Version control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dependencies">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#interfacing-c-c-fortran">Interfacing C/C++/Fortran</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#debugging">Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#editor">Editor</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="install.html#build-prerequisites">Build prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#building-and-installing">Building and installing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#tests">Tests</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pybestprac.html">pybestprac package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pybestprac.html#module-pybestprac">Module contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pybestprac.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pybestprac.html#module-pybestprac.norms">pybestprac.norms module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pybestprac.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="devel.html">Development</a></li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">pybestprac</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Overview</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="https://github.com/bjodah/pybestprac/blob/master/docs/overview.rst" class="fa fa-github"> Edit on GitHub</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <div class="section" id="overview">
+<h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="version-control">
+<h2>Version control<a class="headerlink" href="#version-control" title="Permalink to this headline">¶</a></h2>
+<p>By using a (distributed) version control system (DVCS) you get several
+important benefits:</p>
+<ul class="simple">
+<li>Reproducibility (you know exactly what version is being used)</li>
+<li>History (if a change later turns out to have made things worse it may be undone)</li>
+<li>Collaboration (several people can work independently and their versions merged later on)</li>
+</ul>
+<p>you should basically choose between two modern systems:</p>
+<ul class="simple">
+<li>git (read more at <a href="#id2"><span class="problematic" id="id3">`http://git-scm.com/`_</span></a>)</li>
+<li>hg (mercury, read more at <a href="#id4"><span class="problematic" id="id5">`http://hg-scm.com/`_</span></a>)</li>
+</ul>
+<p>personally I use the former.</p>
+<p>To fully benefit from your DVCS you can put your code repository
+online. There are several service providers, I would recommend:</p>
+<ul class="simple">
+<li>github.com</li>
+<li>bitbucket.org</li>
+</ul>
+<p>personally I use the former.</p>
+</div>
+<div class="section" id="dependencies">
+<h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h2>
+<p>In order not having to reinvent the wheel perpetually it is
+common practice to let your package rely on other packages.</p>
+<p><tt class="docutils literal"><span class="pre">pybestprac</span></tt> uses the following packages:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://pypi.python.org/pypi/pytest">pytest</a> - simple powerful testing with Python</li>
+<li><a class="reference external" href="https://pypi.python.org/pypi/future">future</a> - Clean single-source support for Python 3 and 2</li>
+<li><a class="reference external" href="https://pypi.python.org/pypi/argh">argh</a> - An unobtrusive argparse wrapper with natural syntax</li>
+</ul>
+<p>to manage the dependencies you may rely on Python (since v3.4 built-in) <tt class="docutils literal"><span class="pre">pip</span></tt> tool or
+an external package manager such as <tt class="docutils literal"><span class="pre">conda</span></tt>.</p>
+<p>These packages (and eventually also including your own) are usually hosted at:</p>
+<p>-<a class="reference external" href="https://pypi.python.org">PyPI</a>
+-<a class="reference external" href="https://binstar.org">Binstar</a></p>
+<p>where the latter hosts <tt class="docutils literal"><span class="pre">conda</span></tt> packages and also allow pre-compiled binary packages
+(this is a HUGE plus when your build process gets involved).</p>
+</div>
+<div class="section" id="interfacing-c-c-fortran">
+<h2>Interfacing C/C++/Fortran<a class="headerlink" href="#interfacing-c-c-fortran" title="Permalink to this headline">¶</a></h2>
+<p>See <a href="#id6"><span class="problematic" id="id7">`fortran90.org`_</span></a> for best practices for Fortran.</p>
+<ul class="simple">
+<li><a class="reference external" href="https://pypi.python.org/pypi/cython">cython</a> -</li>
+</ul>
+<p>Host python wheels (binary distribution) for several platforms:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://binstar.org">binstar</a> - provided for free by Continuum Analytics.</li>
+</ul>
+</div>
+<div class="section" id="documentation">
+<h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>sphinx - RestructuredText</li>
+<li>numpydoc - docstrings</li>
+<li>sphinx_rtd_theme - ReadTheDocs theme (unable to build the docs at readthedocs.org without extensive mocking of
+extension module). Hence the actual docs are hosted in the <tt class="docutils literal"><span class="pre">gh-pages</span></tt> branch of the repo.</li>
+</ul>
+</div>
+<div class="section" id="debugging">
+<h2>Debugging<a class="headerlink" href="#debugging" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>pudb</li>
+<li>pdb</li>
+</ul>
+</div>
+<div class="section" id="editor">
+<h2>Editor<a class="headerlink" href="#editor" title="Permalink to this headline">¶</a></h2>
+<p>Even though it does not quite fall under best practices a word on editors may
+still be good. Saying what editor is the best is like saying car brand X is
+better than car brand Y, but some popular choices are:</p>
+<ul class="simple">
+<li>Emacs</li>
+<li>Vim</li>
+<li>PyCharm</li>
+</ul>
+<p>where I personally use the former. For some python specific tips for emacs
+you may have a look at <a class="reference external" href="https://github.com/jhamrick/emacs">https://github.com/jhamrick/emacs</a> and for a beginners
+guide on Emacs you may want to look at <a class="reference external" href="http://www.jesshamrick.com/2012/09/10/absolute-beginners-guide-to-emacs/">http://www.jesshamrick.com/2012/09/10/absolute-beginners-guide-to-emacs/</a>.</p>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="install.html" class="btn btn-neutral float-right" title="Installation"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Welcome to pybestprac’s documentation!"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Bjoern Dahlgren.
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.0.2.dev',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,292 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pybestprac.norms &mdash; pybestprac 0.0.2.dev documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="pybestprac 0.0.2.dev documentation" href="../../index.html"/>
+        <link rel="up" title="Module code" href="../index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="../../index.html" class="fa fa-home"> pybestprac</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../overview.html#version-control">Version control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../overview.html#dependencies">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../overview.html#interfacing-c-c-fortran">Interfacing C/C++/Fortran</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../overview.html#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../overview.html#debugging">Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../overview.html#editor">Editor</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../install.html#build-prerequisites">Build prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../install.html#building-and-installing">Building and installing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../install.html#tests">Tests</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../pybestprac.html">pybestprac package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../pybestprac.html#module-pybestprac">Module contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../pybestprac.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../pybestprac.html#module-pybestprac.norms">pybestprac.norms module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../pybestprac.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../devel.html">Development</a></li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">pybestprac</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      
+    <li>pybestprac.norms</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="https://github.com/bjodah/pybestprac/blob/master/docs/_modules/pybestprac/norms.rst" class="fa fa-github"> Edit on GitHub</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <h1>Source code for pybestprac.norms</h1><div class="highlight"><pre>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">here you will find all norms implemented.</span>
+
+<span class="sd">Example:</span>
+
+<span class="sd">&gt;&gt;&gt; from pybestprac.norms import taxicab_norm</span>
+<span class="sd">&gt;&gt;&gt; taxicab_norm([(1, 1), (2, 2)])</span>
+<span class="sd">[2, 4]</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">operator</span> <span class="kn">import</span> <span class="n">add</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="nb">reduce</span>
+
+<span class="kn">from</span> <span class="nn">._euclid</span> <span class="kn">import</span> <span class="n">euclidean_norm</span> <span class="k">as</span> <span class="n">_euclidean_norm</span>
+
+
+<span class="k">def</span> <span class="nf">_replace_empty_with_single_zero_tuple</span><span class="p">(</span><span class="n">vectors</span><span class="p">):</span>
+    <span class="n">_vectors</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">vectors</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">_vectors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">_vectors</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="mi">0</span><span class="p">,))</span>
+    <span class="k">return</span> <span class="n">_vectors</span>
+
+
+<div class="viewcode-block" id="euclidean_norm"><a class="viewcode-back" href="../../pybestprac.html#pybestprac.norms.euclidean_norm">[docs]</a><span class="k">def</span> <span class="nf">euclidean_norm</span><span class="p">(</span><span class="n">vectors</span><span class="p">,</span> <span class="n">allow_empty</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="sd">r&quot;&quot;&quot;</span>
+<span class="sd">    Calculates the euclidean norms of vectors of integers through the formula:</span>
+
+<span class="sd">    .. math::</span>
+
+<span class="sd">        \|\boldsymbol{x}\| := \sqrt{x_1^2 + \cdots + x_n^2}</span>
+
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    vectors: iterable of iterables containing integers</span>
+<span class="sd">        The vectors to compute the norm for. If the vectors does not contain</span>
+<span class="sd">        integers, the values will be rounded prior to evaluation.</span>
+<span class="sd">    allow_empty: bool</span>
+<span class="sd">        Allow length 0 iterables in vectors by replacing them with</span>
+<span class="sd">        a zero (default: False).</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; euclidean_norm([(1, 1, 1, 1), (2, 2, 2, 2), (3, 3, 3, 3)])</span>
+<span class="sd">    [2.0, 4.0, 6.0]</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    List of norms (floating point numbers)</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    RuntimeError</span>
+<span class="sd">        If ``allow_empty == False`` and an empty iterable is</span>
+<span class="sd">        passed in vectors.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    .. versionadded:: 0.0.1</span>
+
+<span class="sd">    The core algorithm is implemented in fastest possible way (for single</span>
+<span class="sd">    node computations) using OpenMP reduction directive but the wrappers</span>
+<span class="sd">    may slow things down. If optimal performance is critical: consider</span>
+<span class="sd">    calling the Fortran subroutine directly.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">allow_empty</span><span class="p">:</span>
+        <span class="n">vectors</span> <span class="o">=</span> <span class="n">_replace_empty_with_single_zero_tuple</span><span class="p">(</span><span class="n">vectors</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">_euclidean_norm</span><span class="p">(</span><span class="n">vectors</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="taxicab_norm"><a class="viewcode-back" href="../../pybestprac.html#pybestprac.norms.taxicab_norm">[docs]</a><span class="k">def</span> <span class="nf">taxicab_norm</span><span class="p">(</span><span class="n">vectors</span><span class="p">,</span> <span class="n">allow_empty</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculates the taxicab norms of vectors of numbers through the formula:</span>
+
+<span class="sd">    .. math::</span>
+
+<span class="sd">        \|\boldsymbol{x}\| := x_1 + \cdots + x_n</span>
+
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    vectors: iterable of iterables containing numbers</span>
+<span class="sd">        The vectors to compute the norm for.</span>
+<span class="sd">    allow_empty: bool</span>
+<span class="sd">        Allow length 0 iterables in vectors by replacing them with</span>
+<span class="sd">        a zero (default: False).</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; taxicab_norm([(1, 1, 1, 1), (2, 2, 2, 2), (3, 3, 3, 3)])</span>
+<span class="sd">    [4, 8, 12]</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    List of norms</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    TypeError</span>
+<span class="sd">        If ``allow_empty == False`` and an empty iterable is</span>
+<span class="sd">        passed in vectors.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    .. versionadded:: 0.0.2</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">allow_empty</span><span class="p">:</span>
+        <span class="n">vectors</span> <span class="o">=</span> <span class="n">_replace_empty_with_single_zero_tuple</span><span class="p">(</span><span class="n">vectors</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">[</span><span class="nb">reduce</span><span class="p">(</span><span class="n">add</span><span class="p">,</span> <span class="nb">map</span><span class="p">(</span><span class="nb">abs</span><span class="p">,</span> <span class="n">v</span><span class="p">))</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">vectors</span><span class="p">]</span></div>
+</pre></div>
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Bjoern Dahlgren.
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.0.2.dev',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
