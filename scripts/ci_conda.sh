@@ -1,8 +1,12 @@
 #!/bin/bash
+# this script assumes conda is in $PATH
+
 export PYTHON_VERSION=$1
 export CONDA_PY=$2
 export ENV_NAME=$3
+export RUN_TESTS=$4
 
+export CONDA_PATH=$(conda info --system | grep sys.prefix | cut -d: -f2 | sed -e 's/^ *//')
 source ./scripts/setup_conda_testenv.sh $PYTHON_VERSION $ENV_NAME
 conda info
 python --version
@@ -10,4 +14,6 @@ python setup.py --version
 export DISTUTILS_DEBUG=1
 conda build conda-recipe
 conda install --quiet pybestprac --use-local
-LIBRARY_PATH=$MINICONDA_PATH/envs/$ENV_NAME/lib:$LIBRARY_PATH TEST_INSTALL=1 bash -x -e ./scripts/run_tests.sh
+if [[ "$RUN_TESTS" == "1" ]]; then
+    LIBRARY_PATH=$CONDA_PATH/envs/$ENV_NAME/lib:$LIBRARY_PATH ./scripts/run_tests.sh
+fi

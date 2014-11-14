@@ -16,10 +16,6 @@ env:
     - secure: "JnLHNyHwgjzIKdZ4MdJm98IjAoUjN6eZ3SyGw629ad7BMM8P1n/tPlwDd6WuVQHvVpkVsnoEhg45CsC4vIg+wXVpfjfqSC9kQtPnvdDMEsDwxCG4soKrH5HJVjp6XsY6RbtutqQgDsp7+bYl6edL+r7GzDx39cb+pk2fE0H/OBo="
 
 before_install:
-  - if [[ $(git log --format=%B --no-merges -n 1) =~ \w*\[release\]\w* ]]; then
-      export IS_RELEASE=1; else export IS_RELEASE=0; 
-    fi
-  - echo $IS_RELEASE
   - export CONDA_PATH=$HOME/miniconda
   - source ./scripts/install_miniconda.sh $PYTHON_VERSION $CONDA_PATH
   - conda config --add channels http://conda.binstar.org/$BINSTAR_USER
@@ -32,16 +28,10 @@ before_install:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
       brew update && brew install gcc; 
     fi
-  - source ./scripts/setup_conda_testenv.sh $PYTHON_VERSION $ENV_NAME
-  - python --version
-  - python -c "import setup; print(setup.__version__)"
-  - export DISTUTILS_DEBUG=1
 install:
-  - conda build conda-recipe
-  - conda install pybestprac --use-local
-  - LIBRARY_PATH=$CONDA_PATH/envs/$ENV_NAME/lib:$LIBRARY_PATH python setup.py build_ext --inplace
-script: 
-  - ./scripts/run_tests.sh
+  - source ./scripts/ci_conda.sh $PYTHON_VERSION $CONDA_PY $ENV_NAME 0
+script:
+  - LIBRARY_PATH=$CONDA_PATH/envs/$ENV_NAME/lib:$LIBRARY_PATH ./scripts/run_tests.sh
 after_success:
   - coveralls
   - ./scripts/travis_after_success.sh

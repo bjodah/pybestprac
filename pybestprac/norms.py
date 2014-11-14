@@ -15,6 +15,16 @@ from functools import reduce
 from ._euclid import euclidean_norm as _euclidean_norm
 
 
+def _replace_empty_with_single_zero_tuple(vectors):
+    _vectors = []
+    for v in vectors:
+        if len(v) > 0:
+            _vectors.append(v)
+        else:
+            _vectors.append((0,))
+    return _vectors
+
+
 def euclidean_norm(vectors, allow_empty=False):
     r"""
     Calculates the euclidean norms of vectors of integers through the formula:
@@ -45,7 +55,7 @@ def euclidean_norm(vectors, allow_empty=False):
     Raises
     ------
     RuntimeError
-        If ``allow_empty`` not set to True and an empty iterable is
+        If ``allow_empty == False`` and an empty iterable is
         passed in vectors.
 
     Notes
@@ -59,16 +69,46 @@ def euclidean_norm(vectors, allow_empty=False):
 
     """
     if allow_empty:
-        _vectors = []
-        for v in vectors:
-            if len(v) > 0:
-                _vectors.append(v)
-            else:
-                _vectors.append((0,))
-        vectors = _vectors
+        vectors = _replace_empty_with_single_zero_tuple(vectors)
     return _euclidean_norm(vectors)
 
 
-def taxicab_norm(vectors):
-    # TODO: write a proper docstring
+def taxicab_norm(vectors, allow_empty=False):
+    """
+    Calculates the taxicab norms of vectors of numbers through the formula:
+
+    .. math::
+
+        \|\boldsymbol{x}\| := x_1 + \cdots + x_n
+
+
+    Parameters
+    ----------
+    vectors: iterable of iterables containing numbers
+        The vectors to compute the norm for.
+    allow_empty: bool
+        Allow length 0 iterables in vectors by replacing them with
+        a zero (default: False).
+
+    Examples
+    --------
+    >>> taxicab_norm([(1, 1, 1, 1), (2, 2, 2, 2), (3, 3, 3, 3)])
+    [4, 8, 12]
+
+    Returns
+    -------
+    List of norms
+
+    Raises
+    ------
+    TypeError
+        If ``allow_empty == False`` and an empty iterable is
+        passed in vectors.
+
+    Notes
+    -----
+    .. versionadded:: 0.0.2
+    """
+    if allow_empty:
+        vectors = _replace_empty_with_single_zero_tuple(vectors)
     return [reduce(add, map(abs, v)) for v in vectors]
