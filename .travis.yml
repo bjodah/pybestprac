@@ -29,9 +29,9 @@ before_install:
       brew update && brew install gcc; 
     fi
 install:
-  - ./scripts/ci_conda.sh $PYTHON_VERSION $CONDA_PY $ENV_NAME
-script: 
-  - ./scripts/run_tests.sh
+  - source ./scripts/ci_conda.sh $PYTHON_VERSION $CONDA_PY $ENV_NAME 0
+script:
+  - LIBRARY_PATH=$CONDA_PATH/envs/$ENV_NAME/lib:$LIBRARY_PATH ./scripts/run_tests.sh
 after_success:
   - coveralls
   - ./scripts/travis_after_success.sh
