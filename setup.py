@@ -52,10 +52,14 @@ if ON_RTD or IDEMPOTENT_INVOCATION:
     # Enbale pip to import setup.py before all requirements are installed
     ext_modules = []
 else:
+    extmodsrc = 'pybestprac/_euclid.pyx'
+    if not os.path.exists(extmodsrc):
+        extmodsrc = extmodsrc[:-3] + 'c'  # sdist
+
     sources = [
         'src/euclid_enorm.f90',
         'src/euclid.cpp',
-        'pybestprac/_euclid.pyx',
+        extmodsrc,
     ]
 
     # The rest of this `else` clause relies on pycodeexport/pycompilation
